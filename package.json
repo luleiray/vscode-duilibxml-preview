@@ -1,11 +1,11 @@
 {
   "name": "duilib-ui-preview",
   "displayName": "DuiLib UI Preview",
-  "publisher": "Ray",
+  "publisher": "museray",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://www.baidu.com"
+    "url": "https://github.com/luleiray/vscode-duilibxml-preview"
   },
   "description": "Preview DuiLib's XML",
   "version": "0.0.2",
@@ -45,7 +45,8 @@
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "vscode-test",
-    "pack": "vsce package"
+    "pack": "vsce package",
+    "publish": "vsce publish"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",
@@ -56,7 +57,7 @@
     "@typescript-eslint/parser": "^7.0.2",
     "@vscode/test-cli": "^0.0.6",
     "@vscode/test-electron": "^2.3.9",
-    "@vscode/vsce": "2.20.0",
+    "@vscode/vsce": "^2.20.0",
     "eslint": "^8.56.0",
     "lodash": "latest",
     "shelljs": "latest",
@@ -65,5 +66,8 @@
     "webpack": "^5.90.3",
     "webpack-cli": "^5.1.4",
     "xmldoc": "latest"
+  },
+  "dependencies": {
+    "vsce": "^2.15.0"
   }
 }
