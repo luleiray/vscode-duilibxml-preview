@@ -8,6 +8,7 @@
     "url": "https://github.com/luleiray/vscode-duilibxml-preview"
   },
   "description": "Preview DuiLib's XML",
+  "icon": "assets/logo.png",
   "version": "0.0.2",
   "engines": {
     "vscode": "^1.60.0"

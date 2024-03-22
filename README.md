@@ -8,11 +8,11 @@
 
 ## 核心功能
 - 预览XML文件
-- ![overview](./gifs/preview.gif)
+- ![overview](./assets/preview.gif)
 - 修改XML文件实时生效
-- ![overview](./gifs/edit.gif)
+- ![overview](./assets/edit.gif)
 - 多语言预览(请将多语言xml放到language目录下)
-- ![overview](./gifs/multi_language.gif)
+- ![overview](./assets/multi_language.gif)
 - 可预览按钮的不同状态
 ## TODO
 - 预览高DPI
