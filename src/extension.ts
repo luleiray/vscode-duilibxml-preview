@@ -64,7 +64,7 @@ class DuiLibPreview {
 		const language = this.getLanguage();
 		const buttonState = this.getButtonState();
 	
-		const command = `${pluginRoot}\\XMLToPng.exe --button_state=${buttonState} --language=${language} --skin_path=${rootDir?.uri.fsPath}\\`;
+		const command = `"${pluginRoot}\\XMLToPng.exe" --button_state=${buttonState} --language=${language} --skin_path=\"${rootDir?.uri.fsPath}\\\\"`;
 	
 		const result = execSync(command, {
 			input: xmlData
