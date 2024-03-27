@@ -198,16 +198,13 @@ class DuiLibPreview {
 				});
 		
 				var inputBackground = $("#inputBackground");
-				inputBackground.keypress(function(e){
-					var key = e.which;
-					if(key==13){
-						$("body").css("background-color", inputBackground.val());
-						vscode.postMessage({
-							type: "bkcolor",
+				inputBackground.on("input propertychange", function(){
+					$("body").css("background-color", inputBackground.val());
+					vscode.postMessage({
+						type: "bkcolor",
 							value: inputBackground.val(),
 							reload: false
-						});
-					}
+					});
 				});
 		
 				var btnStateSelect = $("#btnStateSelect");
@@ -234,7 +231,7 @@ class DuiLibPreview {
 		<body>
 			<div class="options_header">
 				语言: <input id="inputCommand" value="${language}" placeholder="输入语言xml名即可"/>
-				&nbsp;&nbsp;背景颜色: <input id="inputBackground" value="${bkcolor}" placeholder="输入css风格颜色"/>
+				&nbsp;&nbsp;背景颜色: <input id="inputBackground" type="color" value="${bkcolor}"/>
 				&nbsp;&nbsp;选择按钮状态: 
 				<select id="btnStateSelect">
 					<option value="normal">普通</option>
