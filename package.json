@@ -9,7 +9,7 @@
   },
   "description": "Preview DuiLib's XML",
   "icon": "assets/logo.png",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "engines": {
     "vscode": "^1.60.0"
   },

@@ -67,7 +67,8 @@ class DuiLibPreview {
 		const command = `"${pluginRoot}\\XMLToPng.exe" --button_state=${buttonState} --language=${language} --skin_path=\"${rootDir?.uri.fsPath}\\\\"`;
 	
 		const result = execSync(command, {
-			input: xmlData
+			input: xmlData,
+			maxBuffer: 1024 * 1024 * 10
 		});
 	
 		return result;
