@@ -9,7 +9,7 @@
   },
   "description": "Preview DuiLib's XML",
   "icon": "assets/logo.png",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "engines": {
     "vscode": "^1.60.0"
   },
@@ -25,6 +25,10 @@
       {
         "command": "duilib_preview_xml",
         "title": "DuiLib Preview"
+      },
+      {
+        "command": "duilib_extract_style",
+        "title": "DuiLib Extract Style"
       }
     ],
     "menus": {
@@ -32,6 +36,12 @@
         {
           "command": "duilib_preview_xml",
           "when": "resourceExtname == '.xml'"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "duilib_extract_style",
+          "when": "editorHasSelection"
         }
       ]
     }

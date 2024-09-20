@@ -18,6 +18,7 @@ class DuiLibPreview {
 	vsCodeContext : vscode.ExtensionContext;
 	lastPannel : vscode.WebviewPanel | undefined;
 	lastContent: string | undefined;
+	lastSelectText: string | undefined;
 
 	constructor(context: vscode.ExtensionContext) {
 		this.vsCodeContext = context;
@@ -27,6 +28,11 @@ class DuiLibPreview {
 		// 监听xml文本输入变化
 		vscode.workspace.onDidChangeTextDocument( (e) => {
 			debounced(e);
+		});
+
+		// 保存选中的文本，用来提取出有用的信息
+		vscode.window.onDidChangeTextEditorSelection(({ textEditor, selections }) => {
+			this.lastSelectText = textEditor.document.getText(selections[0]);
 		});
 
 		// 监听选择的文件变化
@@ -51,6 +57,28 @@ class DuiLibPreview {
 		const fs = require("fs");
 		// Read file from VSCode right menu
 		this.openWebview(fs.readFileSync(uri.fsPath))
+	}
+
+	onDuiLibExtractStyle(uri: vscode.Uri) {
+		if (!this.lastSelectText || this.lastSelectText?.length == 0) {
+			vscode.window.showErrorMessage("Please select text!");
+			return;
+		}
+
+		try {
+			let document = new xmldoc.XmlDocument(this.lastSelectText!);
+			let style = "<style2>\n";
+			for(let key in document.attr) {
+				let item = `	<item name="${key}" value="${document.attr[key]}"/>\n`;
+				style += item;
+			}
+			style += "</style2>";
+			vscode.env.clipboard.writeText(style);
+			vscode.window.showInformationMessage("DuiLib Preview: Style text copied to clipboard!");
+		} catch(error) {
+			vscode.window.showErrorMessage("DuiLib Preview: Please select hole xml node!");
+			return;
+		}
 	}
 
 	// 执行命令行，将xml转换成png图片，从标准输出中读取图片
@@ -267,7 +295,12 @@ export function activate(context: vscode.ExtensionContext) {
 		duiLibPreview.onDuiLibPreviewXmlCmd(uri);
 	});
 	
+	let extractStyleDisposable = vscode.commands.registerCommand('duilib_extract_style', (uri) => {
+		duiLibPreview.onDuiLibExtractStyle(uri);
+	});
+
 	context.subscriptions.push(disposable);	
+	context.subscriptions.push(extractStyleDisposable);
 }
 
 // This method is called when your extension is deactivated
