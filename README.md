@@ -7,10 +7,8 @@
 - 在XML文件上点击右键，选择DuiLib Preview即可
 
 ## 核心功能
-- 预览XML文件
+- 预览XML文件,修改XML文件实时生效
 - ![overview](./assets/preview.gif)
-- 修改XML文件实时生效
-- ![overview](./assets/edit.gif)
 - 多语言预览(请将多语言xml放到language目录下)
 - ![overview](./assets/multi_language.gif)
 - 可预览按钮的不同状态
